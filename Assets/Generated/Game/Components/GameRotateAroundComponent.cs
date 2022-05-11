@@ -11,22 +11,24 @@ public partial class GameEntity {
     public RotateAroundComponent rotateAround { get { return (RotateAroundComponent)GetComponent(GameComponentsLookup.RotateAround); } }
     public bool hasRotateAround { get { return HasComponent(GameComponentsLookup.RotateAround); } }
 
-    public void AddRotateAround(UnityEngine.Vector3 newPivot, float newSpeed, UnityEngine.Vector3 newAxis, float newCurrentAngle) {
+    public void AddRotateAround(UnityEngine.Vector3 newPivot, float newSpeed, UnityEngine.Vector3 newAxis, float newTargetAngle, float newCurrentAngle) {
         var index = GameComponentsLookup.RotateAround;
         var component = (RotateAroundComponent)CreateComponent(index, typeof(RotateAroundComponent));
         component.pivot = newPivot;
         component.Speed = newSpeed;
         component.axis = newAxis;
+        component.targetAngle = newTargetAngle;
         component.currentAngle = newCurrentAngle;
         AddComponent(index, component);
     }
 
-    public void ReplaceRotateAround(UnityEngine.Vector3 newPivot, float newSpeed, UnityEngine.Vector3 newAxis, float newCurrentAngle) {
+    public void ReplaceRotateAround(UnityEngine.Vector3 newPivot, float newSpeed, UnityEngine.Vector3 newAxis, float newTargetAngle, float newCurrentAngle) {
         var index = GameComponentsLookup.RotateAround;
         var component = (RotateAroundComponent)CreateComponent(index, typeof(RotateAroundComponent));
         component.pivot = newPivot;
         component.Speed = newSpeed;
         component.axis = newAxis;
+        component.targetAngle = newTargetAngle;
         component.currentAngle = newCurrentAngle;
         ReplaceComponent(index, component);
     }

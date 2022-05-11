@@ -23,7 +23,7 @@ public class RotateAroundSystem : IExecuteSystem
             RotateAroundComponent rotateAround = e.rotateAround;
 
             float inc = rotateAround.Speed * Time.deltaTime;
-            float remaning = 180 - rotateAround.currentAngle;
+            float remaning = rotateAround.targetAngle - rotateAround.currentAngle;
             float realInc = Mathf.Min(remaning, inc);
 
             Quaternion rot = Quaternion.AngleAxis(realInc, rotateAround.axis);
@@ -32,9 +32,8 @@ public class RotateAroundSystem : IExecuteSystem
 
             rotateAround.currentAngle += realInc;
 
-            if (rotateAround.currentAngle == 180)
+            if (rotateAround.currentAngle == rotateAround.targetAngle)
             {
-                rotateAround.currentAngle = 0;
                 toRemove.Add(e);
             }
         }

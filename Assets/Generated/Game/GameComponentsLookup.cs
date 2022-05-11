@@ -17,10 +17,12 @@ public static class GameComponentsLookup {
     public const int RotateTo = 6;
     public const int Rotation = 7;
     public const int RotationListener = 8;
-    public const int Slice = 9;
-    public const int UnityView = 10;
+    public const int Selected = 9;
+    public const int SelectedListener = 10;
+    public const int Slice = 11;
+    public const int UnityView = 12;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 13;
 
     public static readonly string[] componentNames = {
         "BoardPosition",
@@ -32,6 +34,8 @@ public static class GameComponentsLookup {
         "RotateTo",
         "Rotation",
         "RotationListener",
+        "Selected",
+        "SelectedListener",
         "Slice",
         "UnityView"
     };
@@ -46,6 +50,8 @@ public static class GameComponentsLookup {
         typeof(RotateToComponent),
         typeof(RotationComponent),
         typeof(RotationListenerComponent),
+        typeof(SelectedComponent),
+        typeof(SelectedListenerComponent),
         typeof(SliceComponent),
         typeof(UnityViewComponent)
     };

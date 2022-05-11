@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         e.AddEntityPosition(position);
         e.AddRotation(Quaternion.identity);
         e.isSlice = true;
+        e.AddSelected(false);
 
         SliceView sliceComponent = playerView.GetComponent<SliceView>();
         sliceComponent.Link(contexts, e);
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
             .Add(new MoveToSystem(contexts))
             .Add(new RotateToSystem(contexts))
             .Add(new RotateAroundSystem(contexts))
+            .Add(new SelectedEventSystem(contexts))
             .Add(new RotationEventSystem(contexts));
     }
 }

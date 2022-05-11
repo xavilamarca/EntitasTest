@@ -8,7 +8,6 @@ public class BoardLogicSystem : IExecuteSystem
     readonly Contexts _context;
 
     GameEntity origin;
-    GameEntity target;
 
     Dictionary<int, Stack<GameEntity>> board;
 
@@ -47,15 +46,20 @@ public class BoardLogicSystem : IExecuteSystem
             if (origin == null)
             {
                 origin = clicked;
+                origin.ReplaceSelected(true);
             }
-            else if (target == null && origin != clicked)
+            else if (origin == clicked)
             {
-                target = clicked;
+                origin.ReplaceSelected(false);
+                origin = null;
+            }
+            else
+            {
+                MoveStacks(origin, clicked);
 
-                MoveStacks(origin, target);
+                origin.ReplaceSelected(false);
 
                 origin = null;
-                target = null;
             }
 
             toUnClick.Add(clicked);
@@ -105,7 +109,7 @@ public class BoardLogicSystem : IExecuteSystem
                 axis = Vector3.left;
             }
 
-            e.AddRotateAround(Vector3.Lerp(e.entityPosition.Value, nextPosition, 0.5f), MOVE_SPEED, axis, 0);
+            e.AddRotateAround(Vector3.Lerp(e.entityPosition.Value, nextPosition, 0.5f), MOVE_SPEED, axis, 180, 0);
 
             nextPosition += Vector3.up * FLOOR_HEIGHT;
             stackTarget.Push(e);
